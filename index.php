@@ -1,59 +1,41 @@
+<?php require_once 'connection.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Freelancer - Start Bootstrap Theme</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
-    </head>
-    < id="page-top">
-        <!-- Navigation-->
-        <?php include_once 'partials/navbar.php';?>
-        <!-- Masthead-->
-        <?php include_once 'partials/hero.php';?>
-        <!-- Portfolio Section-->
-        <?php include_once 'partials/sections/portfolio.php';?>
-        <!-- About Section-->
-        <?php include_once 'partials/sections/about.php';?>
-        <!-- Contact Section-->
-        <?php include_once 'partials/sections/contact.php';?>
-        <!-- Footer-->
-        <?php include_once 'partials/footer.php';?>
-        <!-- Copyright Section-->
-        <div class="copyright py-4 text-center text-white">
-            <div class="container"><small>Copyright &copy; Your Website 2023</small></div>
-        </div>
-        <!-- Portfolio Modals-->
-        <!-- Portfolio Modal 1-->
-        <?php include_once 'partials/modals/portfolio-1.php';?>
-        <!-- Portfolio Modal 2-->
-        <?php include_once 'partials/modals/portfolio-2.php';?>
-        <!-- Portfolio Modal 3-->
-        <?php include_once 'partials/modals/portfolio-3.php';?>
-        <!-- Portfolio Modal 4-->
-        <?php include_once 'partials/modals/portfolio-4.php';?>
-        <!-- Portfolio Modal 5-->
-        <?php include_once 'partials/modals/portfolio-5.php';?>
-        <!-- Portfolio Modal 6-->
-        <?php include_once 'partials/modals/portfolio-6.php';?>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-    </body>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <? $users = $pdo->query("SELECT * FROM users"); ?>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($users as $user): ?>
+                    <tr>
+                        <td><?= $user['firstname'] ?></td>
+                        <td><?= $user['lastname'] ?></td>
+                        <td>
+                            <a href="update.php?id=<?= $user['id'] ?>">Update</a>
+                            <a href="delete.php?id=<?= $user['id'] ?>">Delete</a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+
 </html>
