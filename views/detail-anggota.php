@@ -53,13 +53,13 @@ if(!$user) {
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-box"></i></div>
                             Produk
                         </a>
-                        <a class="nav-link" href="list-pemesanan.php">
+                        <a class="nav-link" href="list-pesanan.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-                            Pemesanan
+                            Pesanan
                         </a>
-                        <a class="nav-link" href="list-transaksi.php">
+                        <a class="nav-link" href="list-pembayaran.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-money-bill"></i></div>
-                            Transaksi
+                            Pembayaran
                         </a>
                         <a class="nav-link" href="list-kartuDiskon.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-credit-card"></i></div>
@@ -86,7 +86,7 @@ if(!$user) {
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-address-card me-1"></i>
-                             Detail Anggota
+                            Detail Anggota
                         </div>
                         <div class="card-body">
                             <table class="table table-bordered">

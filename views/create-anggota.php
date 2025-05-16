@@ -97,13 +97,13 @@ $kartuDiskons = KartuDiskon::get();
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-box"></i></div>
                             Produk
                         </a>
-                        <a class="nav-link" href="list-pemesanan.php">
+                        <a class="nav-link" href="list-pesanan.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-                            Pemesanan
+                            Pesanan
                         </a>
-                        <a class="nav-link" href="list-transaksi.php">
+                        <a class="nav-link" href="list-pambayaran.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-money-bill"></i></div>
-                            Transaksi
+                            Pembayaran
                         </a>
                     </div>
                 </div>
@@ -174,7 +174,7 @@ $kartuDiskons = KartuDiskon::get();
                             &middot;
                             <a href="#">Terms &amp; Conditions</a>
                         </div>
-                    </div>
+                    </div
                 </div>
             </footer>
         </div>

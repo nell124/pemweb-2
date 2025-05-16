@@ -2,7 +2,19 @@
 require_once __DIR__ . '/../models/pegawai.php';
 use models\Pegawai;
 
-$users = Pegawai::get();
+if(isset($_POST['submit'])) {
+    $data = [
+        'nip' => $_POST['nip'],
+        'nama' => $_POST['nama'],
+        'jenis_kelamin' => $_POST['jenis_kelamin'],
+        'jabatan' => $_POST['jabatan'],
+    ];
+
+    pegawai::create($data);
+    header("Location: list-pegawai.php");
+    exit;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +30,7 @@ $users = Pegawai::get();
 </head>
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand ps-3" href="dashboard.php">project01</a>
+        <a class="navbar-brand ps-3" href="dashboard.php">Koperasi Pegawai</a>
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle">
             <i class="fas fa-bars"></i>
         </button>
@@ -30,25 +42,31 @@ $users = Pegawai::get();
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">Main Menu</div>
-                        <a class="nav-link" href="list-anggota.php">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-users"></i></div>
-                            Anggota
+
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseAnggota" aria-expanded="false" aria-controls="collapseAnggota">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Manajemen Anggota
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
-                        <a class="nav-link" href="list-pegawai.php">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
-                            Pegawai
-                        </a>
+                        <div class="collapse" id="collapseAnggota" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="list-anggota.php">Data Anggota</a>
+                                <a class="nav-link" href="list-pegawai.php">Data Pegawai</a>
+                                <a class="nav-link" href="list-kartu-diskon.php">Kartu Diskon</a>
+                            </nav>
+                        </div>
+
                         <a class="nav-link" href="list-produk.php">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-box"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fas fa-box"></i></div>
                             Produk
                         </a>
-                        <a class="nav-link" href="list-pemesanan.php">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-                            Pemesanan
+                        <a class="nav-link" href="list-pesanan.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-cart-shopping"></i></div>
+                            Pesanan
                         </a>
-                        <a class="nav-link" href="list-transaksi.php">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-money-bill"></i></div>
-                            Transaksi
+                        <a class="nav-link" href="list-pembayaran.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-money-bill"></i></div>
+                            Pembayaran
                         </a>
                     </div>
                 </div>
@@ -76,10 +94,6 @@ $users = Pegawai::get();
                         <div class="card-body">
                             <form action="create-pegawai.php" method="POST">
                                 <div class="mb-3">
-                                    <label for="nip" class="form-label">ID</label>
-                                    <input type="text" class="form-control" id="id" name="id" required>
-                                </div>
-                                <div class="mb-3">
                                     <label for="nip" class="form-label">NIP</label>
                                     <input type="text" class="form-control" id="nip" name="nip" required>
                                 </div>
@@ -88,19 +102,25 @@ $users = Pegawai::get();
                                     <input type="text" class="form-control" id="nama" name="nama" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
-                                    <select class="form-control" id="jenis_kelamin" name="jenis_kelamin" required>
-                                        <option value="">Pilih Jenis Kelamin</option>
-                                        <option value="Laki-laki">Laki-laki</option>
-                                        <option value="Perempuan">Perempuan</option>
-                                    </select>
+                                    <label class="form-label d-block">Jenis Kelamin</label>
+                                    <div class="form-check form-check-inline">
+                                        <input type="radio" class="form-check-input"
+                                        name="jenis_kelamin" id="laki-laki" value="laki-laki">
+                                        <label for="laki-laki" class="form-check-label">Laki-Laki</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input type="radio" class="form-check-input"
+                                        name="jenis_kelamin" id="perempuan" value="perempuan">
+                                        <label for="perempuan" class="form-check-label">Perempuan</label>
+                                    </div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="jabatan" class="form-label">Jabatan</label>
                                     <input type="text" class="form-control" id="jabatan" name="jabatan" required>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Simpan</button>
-                                <a href="list-pegawai.php" class="btn btn-secondary">Batal</a>
+                                
+                                <a href="list-pegawai.php" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Back</a>
+                                <button type="submit" class="btn btn-primary" name="submit"> Save<i class="fas fa-save"></i></button>
                             </form>
                         </div>
                     </div>

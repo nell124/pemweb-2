@@ -1,18 +1,18 @@
 <?php
-require_once __DIR__ . '/../models/pemesanan.php';
+require_once __DIR__ . '/../models/pesanan.php';
 
 use models\Pesanan;
 
 
 if (!isset($_GET['id'])) {
-    header("Location: list-pemesanan.php");
+    header("Location: list-pesanan.php");
     exit;
 }
 
 $user = pesanan::find($_GET['id']);
 
 if (!$user) {
-    header("Location: list-pemesanan.php");
+    header("Location: list-pesanan.php");
     exit;
 }
 
@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
     ];
 
     pesanan::update($data);
-    header("Location: list-pemesanan.php");
+    header("Location: list-pesanan.php");
     exit;
 }
 
@@ -39,7 +39,7 @@ if (isset($_POST['submit'])) {
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Edit Data Pemesanan</title>
+    <title>Edit Data Pesanan</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="../public/css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -71,13 +71,13 @@ if (isset($_POST['submit'])) {
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-box"></i></div>
                             Produk
                         </a>
-                        <a class="nav-link" href="list-pemesanan.php">
+                        <a class="nav-link" href="list-pesanan.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-                            Pemesanan
+                            Pesanan
                         </a>
-                        <a class="nav-link" href="list-transaksi.php">
+                        <a class="nav-link" href="list-pembayaran.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-money-bill"></i></div>
-                            Transaksi
+                            Pembayaran
                         </a>
                         <a class="nav-link" href="list-kartuDiskon.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-credit-card"></i></div>
@@ -95,19 +95,19 @@ if (isset($_POST['submit'])) {
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Edit Data Pemesanan</h1>
+                    <h1 class="mt-4">Edit Data Pesanan</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="list-pemesanan.php">Pemesanan</a></li>
+                        <li class="breadcrumb-item"><a href="list-pesanan.php">Pesanan</a></li>
                         <li class="breadcrumb-item active">Edit</li>
                     </ol>
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fa-solid fa-pen-to-square"></i>
-                            Form Edit Data Pemesanan
+                            Form Edit Data Pesanan
                         </div>
                         <div class="card-body">
-                            <form action="edit-pemesanan.php?id=<?= $user['id'] ?>" method="POST">
+                            <form action="edit-pesanan.php?id=<?= $user['id'] ?>" method="POST">
                                 <div class="mb-3">
                                     <label for="tanggal" class="form-label">Tanggal</label>
                                     <input type="text" class="form-control" id="tanggal" name="tanggal" value="<?= $user['tanggal'] ?>" required>
@@ -124,7 +124,7 @@ if (isset($_POST['submit'])) {
                                     <label for="anggota_id" class="form-label">Anggota ID</label>
                                     <input type="text" class="form-control" id="anggota_id" name="anggota_id" value="<?= $user['anggota_id'] ?>" required>
                                 </div>
-                                <a href="list-pemesanan.php" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Back</a>
+                                <a href="list-pesanan.php" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Back</a>
                                 <button type="submit" class="btn btn-warning" name="submit"><i class="fas fa-save"></i> Update</button>
                             </form>
                         </div>

@@ -1,31 +1,16 @@
 <?php
-require_once __DIR__ . '/../models/transaksi.php';
-
+require_once __DIR__. '/../models/pembayaran.php';
 use models\Pembayaran;
 
-
-if (!isset($_GET['id'])) {
-    header("Location: list-transaksi.php");
+if(!isset($_GET['id'])) {
+    header("Location: list-pembayaran.php");
     exit;
 }
 
 $user = pembayaran::find($_GET['id']);
 
-if (!$user) {
-    header("Location: list-transaksi.php");
-    exit;
-}
-
-if (isset($_POST['submit'])) {
-    $data = [
-        'id' => $_GET['id'],
-        'jumlah_bayar' => $_POST['jumlah_bayar'],
-        'tanggal' => $_POST['tanggal'],
-        'pesanan_id' => $_POST['pesanan_id'],
-    ];
-
-    pembayaran::update($data);
-    header("Location: list-transaksi.php");
+if(!$user) {
+    header("Location: list-pembayaran.php");
     exit;
 }
 
@@ -33,17 +18,15 @@ if (isset($_POST['submit'])) {
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Edit Data Transaksi</title>
+    <title>Detail Pembayaran</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="../public/css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
-
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <a class="navbar-brand ps-3" href="dashboard.php">project01</a>
@@ -70,13 +53,13 @@ if (isset($_POST['submit'])) {
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-box"></i></div>
                             Produk
                         </a>
-                        <a class="nav-link" href="list-pemesanan.php">
+                        <a class="nav-link" href="list-pesanan.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-                            Pemesanan
+                            Pesanan
                         </a>
-                        <a class="nav-link" href="list-transaksi.php">
+                        <a class="nav-link" href="list-pembayaran.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-money-bill"></i></div>
-                            Transaksi
+                            Pembayaran
                         </a>
                         <a class="nav-link" href="list-kartuDiskon.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-credit-card"></i></div>
@@ -94,34 +77,42 @@ if (isset($_POST['submit'])) {
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Edit Data Transaksi</h1>
+                    <h1 class="mt-4">Detail Pembayaran</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="list-transaksi.php">Transaksi</a></li>
-                        <li class="breadcrumb-item active">Edit</li>
+                        <li class="breadcrumb-item"><a href="list-pembayaran.php">pembayaran</a></li>
+                        <li class="breadcrumb-item active">Detail</li>
                     </ol>
                     <div class="card mb-4">
                         <div class="card-header">
-                            <i class="fa-solid fa-pen-to-square"></i>
-                            Form Edit Data Transaksi
+                            <i class="fas fa-address-card me-1"></i>
+                            Detail Pembayaran
                         </div>
                         <div class="card-body">
-                            <form action="edit-transaksi.php?id=<?= $user['id'] ?>" method="POST">
-                                <div class="mb-3">
-                                    <label for="jumlah_bayar" class="form-label">Jumlah Bayar</label>
-                                    <input type="text" class="form-control" id="jumlah_bayar" name="jumlah_bayar" value="<?= $user['jumlah_bayar'] ?>" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="tanggal" class="form-label">Tanggal</label>
-                                    <input type="text" class="form-control" id="tanggal" name="tanggal" value="<?= $user['tanggal'] ?>" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="pesanan_id" class="form-label">Pesanan ID</label>
-                                    <input type="text" class="form-control" id="pesanan_id" name="pesanan_id" value="<?= $user['pesanan_id'] ?>" required>
-                                </div>
-                                <a href="list-transaksi.php" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Back</a>
-                                <button type="submit" class="btn btn-warning" name="submit"><i class="fas fa-save"></i> Update</button>
-                            </form>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>ID</th>
+                                    <td><?= $user['id'] ?></td>
+                                </tr>
+                                <tr>
+                                    <th>Jumlah Bayar</th>
+                                    <td><?= $user['jumlah_bayar'] ?></td>
+                                </tr>
+                                <tr>
+                                    <th>Tanggal</th>
+                                    <td><?= $user['tanggal'] ?></td>
+                                </tr>
+                                <tr>
+                                    <th>Pesanan ID</th>
+                                    <td><?= $user['pesanan_id'] ?></td>
+                                </tr>
+                            </table>
+
+                            <div class="m3">
+                                <a href="list-pembayaran.php" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Back</a>
+                                <a href="edit-user.php ?id=<?= $user['id'] ?>" class="btn btn-warning"><i class="fas fa-edit"></i> Edit</a>
+                                <a href="delete-user.php ?id=<?= $user['id'] ?>" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
+                            </div>
                         </div>
                     </div>
                 </div>

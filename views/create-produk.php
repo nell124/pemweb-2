@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand ps-3" href="dashboard.php">project01</a>
+        <a class="navbar-brand ps-3" href="dashboard.php">Koperasi Pegawai</a>
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle">
             <i class="fas fa-bars"></i>
         </button>
@@ -48,25 +48,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">Main Menu</div>
-                        <a class="nav-link" href="list-anggota.php">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-users"></i></div>
-                            Anggota
+
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseAnggota" aria-expanded="false" aria-controls="collapseAnggota">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Manajemen Anggota
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
-                        <a class="nav-link" href="list-pegawai.php">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
-                            Pegawai
-                        </a>
+                        <div class="collapse" id="collapseAnggota" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="list-anggota.php">Data Anggota</a>
+                                <a class="nav-link" href="list-pegawai.php">Data Pegawai</a>
+                                <a class="nav-link" href="list-kartu-diskon.php">Kartu Diskon</a>
+                            </nav>
+                        </div>
+
                         <a class="nav-link" href="list-produk.php">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-box"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fas fa-box"></i></div>
                             Produk
                         </a>
-                        <a class="nav-link" href="list-pemesanan.php">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-                            Pemesanan
+                        <a class="nav-link" href="list-pesanan.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-cart-shopping"></i></div>
+                            Pesanan
                         </a>
-                        <a class="nav-link" href="list-transaksi.php">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-money-bill"></i></div>
-                            Transaksi
+                        <a class="nav-link" href="list-pembayaran.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-money-bill"></i></div>
+                            Pembayaran
                         </a>
                     </div>
                 </div>
@@ -114,9 +120,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <input type="number" class="form-control" id="stok" name="stok" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="jenis_produk_id" class="form-label">Jenis Produk</label>
+                                    <label for="jenis_produk_id" class="form-label">Jenis Produk ID</label>
                                     <select class="form-select" id="jenis_produk_id" name="jenis_produk_id" required>
-                                        <option value="">-- Pilih Jenis Produk --</option>
+                                        <option value="">-- Pilih Jenis Produk ID --</option>
                                         <?php foreach ($jenisProdukList as $jenis): ?>
                                             <option value="<?= $jenis['id'] ?>"><?= $jenis['nama'] ?></option>
                                         <?php endforeach; ?>

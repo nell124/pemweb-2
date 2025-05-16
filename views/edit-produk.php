@@ -73,13 +73,13 @@ if (isset($_POST['submit'])) {
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-box"></i></div>
                             Produk
                         </a>
-                        <a class="nav-link" href="list-pemesanan.php">
+                        <a class="nav-link" href="list-pesanan.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-                            Pemesanan
+                            Pesanan
                         </a>
-                        <a class="nav-link" href="list-transaksi.php">
+                        <a class="nav-link" href="list-pembayaran.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-money-bill"></i></div>
-                            Transaksi
+                            Pembayaran
                         </a>
                         <a class="nav-link" href="list-kartuDiskon.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-credit-card"></i></div>

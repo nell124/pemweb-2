@@ -47,7 +47,7 @@ $users = Anggota::get();
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">Main Menu</div>
-                          <a class="nav-link" href="list-anggota.php">
+                        <a class="nav-link" href="list-anggota.php">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-users"></i></div>
                         Anggota
                         </a>
@@ -59,13 +59,13 @@ $users = Anggota::get();
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-box"></i></div>
                             Produk
                         </a>
-                        <a class="nav-link" href="list-pemesanan.php">
+                        <a class="nav-link" href="list-pesanan.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-                            Pemesanan
+                            Pesanan
                         </a>
-                        <a class="nav-link" href="list-transaksi.php">
+                        <a class="nav-link" href="list-pembayaran.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-money-bill"></i></div>
-                            Transaksi
+                            Pembayaran
                         </a>
                     </div>
                 </div>

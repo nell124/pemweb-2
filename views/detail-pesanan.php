@@ -1,16 +1,17 @@
 <?php
-require_once __DIR__. '/../models/transaksi.php';
-use models\Pembayaran;
+require_once __DIR__. '/../models/pesanan.php';
+
+use models\Pesanan;
 
 if(!isset($_GET['id'])) {
-    header("Location: list-transaksi.php");
+    header("Location: list-pesanan.php");
     exit;
 }
 
-$user = pembayaran::find($_GET['id']);
+$user = Pesanan::find($_GET['id']);
 
 if(!$user) {
-    header("Location: list-transaksi.php");
+    header("Location: list-pesanan.php");
     exit;
 }
 
@@ -22,7 +23,7 @@ if(!$user) {
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Detail Pembayaran</title>
+    <title>Detail Pesanan</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="../public/css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -53,13 +54,13 @@ if(!$user) {
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-box"></i></div>
                             Produk
                         </a>
-                        <a class="nav-link" href="list-pemesanan.php">
+                        <a class="nav-link" href="list-pesanan.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-                            Pemesanan
+                            Pesanan
                         </a>
-                        <a class="nav-link" href="list-transaksi.php">
+                        <a class="nav-link" href="list-pembayaran.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-money-bill"></i></div>
-                            Transaksi
+                            Pembayaran
                         </a>
                         <a class="nav-link" href="list-kartuDiskon.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-credit-card"></i></div>
@@ -77,16 +78,16 @@ if(!$user) {
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Detail Pembayaran</h1>
+                    <h1 class="mt-4">Detail Pesanan</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="list-pembayaran.php">pembayaran</a></li>
+                        <li class="breadcrumb-item"><a href="list-pesanan.php">Pesanan</a></li>
                         <li class="breadcrumb-item active">Detail</li>
                     </ol>
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-address-card me-1"></i>
-                             Detail Pembayaran
+                            Detail Pesanan
                         </div>
                         <div class="card-body">
                             <table class="table table-bordered">
@@ -95,21 +96,25 @@ if(!$user) {
                                     <td><?= $user['id'] ?></td>
                                 </tr>
                                 <tr>
-                                    <th>Jumlah Bayar</th>
-                                    <td><?= $user['jumlah_bayar'] ?></td>
-                                </tr>
-                                <tr>
                                     <th>Tanggal</th>
                                     <td><?= $user['tanggal'] ?></td>
                                 </tr>
                                 <tr>
-                                    <th>Pesanan ID</th>
-                                    <td><?= $user['pesanan_id'] ?></td>
+                                    <th>Diskon</th>
+                                    <td><?= $user['diskon'] ?></td>
+                                </tr>
+                                <tr>
+                                    <th>Status Bayar</th>
+                                    <td><?= $user['status_bayar'] ?></td>
+                                </tr>
+                                <tr>
+                                    <th>Anggota ID</th>
+                                    <td><?= $user['anggota_id'] ?></td>
                                 </tr>
                             </table>
 
                             <div class="m3">
-                                <a href="list-pembayaran.php" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Back</a>
+                                <a href="list-pesanan.php" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Back</a>
                                 <a href="edit-user.php ?id=<?= $user['id'] ?>" class="btn btn-warning"><i class="fas fa-edit"></i> Edit</a>
                                 <a href="delete-user.php ?id=<?= $user['id'] ?>" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
                             </div>
